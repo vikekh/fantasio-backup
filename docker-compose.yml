@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  duplicati:
+    image: duplicati/duplicati
+    #environment:
+      #- PUID=${PUID}
+      #- PGID=${PGID}
+      #- TZ=${TZ}
+    volumes:
+      - .duplicati/data:/data
+    ports:
+      - 8200:8200
+    restart: unless-stopped
