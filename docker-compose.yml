@@ -8,7 +8,8 @@ services:
       #- PGID=${PGID}
       #- TZ=${TZ}
     volumes:
-      - .duplicati/data:/data
+      - ./.duplicati/data:/data
+      - /:/source
     ports:
       - 8200:8200
     restart: unless-stopped
