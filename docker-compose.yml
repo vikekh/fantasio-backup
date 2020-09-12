@@ -3,13 +3,10 @@ version: "3.7"
 services:
   duplicati:
     image: duplicati/duplicati
-    #environment:
-      #- PUID=${PUID}
-      #- PGID=${PGID}
-      #- TZ=${TZ}
     volumes:
-      - ./.duplicati/data:/data
       - /:/source
-    ports:
-      - 8200:8200
+      - /media/fantasio/backup:/destination
+      - ./.duplicati/data:/data
+    expose:
+      - 8200
     restart: unless-stopped
