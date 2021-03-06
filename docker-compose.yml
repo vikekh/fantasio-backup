@@ -3,10 +3,20 @@ version: "3.7"
 services:
   duplicati:
     image: duplicati/duplicati
+    container_name: duplicati
     volumes:
       - /:/source
       - /media/fantasio/backup:/destination
       - ./.duplicati/data:/data
     expose:
       - 8200
+    networks:
+      - backup
+      - reverse-proxy
     restart: unless-stopped
+
+networks:
+  backup:
+    external: true
+  reverse-proxy:
+    external: true
