@@ -7,7 +7,7 @@ services:
     volumes:
       - /:/source
       - /media/fantasio/backup:/destination
-      - ./.duplicati/data:/data
+      - duplicati-data:/data
     expose:
       - 8200
     networks:
@@ -15,8 +15,12 @@ services:
       - reverse-proxy
     restart: unless-stopped
 
+volumes:
+  duplicati-data:
+    name: duplicati-data
+
 networks:
   backup:
-    external: true
+    name: backup
   reverse-proxy:
     external: true
