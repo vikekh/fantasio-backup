@@ -14,10 +14,77 @@ services:
       - backup
       - reverse-proxy
     restart: unless-stopped
+  
+  # volumerize:
+  #   image: blacklabelops/volumerize
+  #   container_name: volumerize
+  #   environment:
+  #     - TZ=Europe/Stockholm
+  #     - VOLUMERIZE_SOURCE=/source
+  #     - VOLUMERIZE_TARGET=file:///backup
+  #     - VOLUMERIZE_CONTAINERS=bazarr caddy caddy duplicati homer jackett nexus overseerr plex portainer radarr sonarr tautulli transmission transmission-viktor
+  #     - VOLUMERIZE_JOBBER_TIME=0 0 3 * * *
+  #   volumes:
+  #     - bazarr-config:/source/bazarr-config:ro
+  #     - caddy-config:/source/caddy-config:ro
+  #     - caddy-data:/source/caddy-data:ro
+  #     - duplicati-data:/source/duplicati-data:ro
+  #     - homer-assets:/source/homer-assets:ro
+  #     - jackett-config:/source/jackett-config:ro
+  #     - nexus-data:/source/nexus-data:ro
+  #     - organizr-config:/source/organizr-config:ro
+  #     - overseerr-config:/source/overseerr-config:ro
+  #     - plex-config:/source/plex-config:ro
+  #     - portainer-data:/source/portainer-data:ro
+  #     - radarr-config:/source/radarr-config:ro
+  #     - sonarr-config:/source/sonarr-config:ro
+  #     - tautulli-config:/source/tautulli-config:ro
+  #     - transmission-config:/source/transmission-config:ro
+  #     - transmission-config-viktor:/source/transmission-config-viktor:ro
+  #     - volumerize-backup:/backup
+  #     - volumerize-cache:/volumerize-cache
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   networks:
+  #     - backup
+  #   restart: unless-stopped
 
 volumes:
+  # bazarr-config:
+  #   external: true
+  # caddy-config:
+  #   external: true
+  # caddy-data:
+  #   external: true
   duplicati-data:
     name: duplicati-data
+  # homer-assets:
+  #   external: true
+  # jackett-config:
+  #   external: true
+  # nexus-data:
+  #   external: true
+  # organizr-config:
+  #   external: true
+  # overseerr-config:
+  #   external: true
+  # plex-config:
+  #   external: true
+  # portainer-data:
+  #   external: true
+  # radarr-config:
+  #   external: true
+  # sonarr-config:
+  #   external: true
+  # tautulli-config:
+  #   external: true
+  # transmission-config:
+  #   external: true
+  # transmission-config-viktor:
+  #   external: true
+  # volumerize-backup:
+  #   name: volumerize-backup
+  # volumerize-cache:
+  #   name: volumerize-cache
 
 networks:
   backup:
