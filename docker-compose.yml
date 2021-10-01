@@ -4,12 +4,33 @@ services:
   duplicati:
     image: duplicati/duplicati
     container_name: duplicati
+    hostname: duplicati.fantasio.local
     volumes:
-      - /:/source
+      - /:/source/host
       - /media/fantasio/backup:/destination
       - duplicati-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - bazarr-config:/source/bazarr-config:ro
+      - caddy-config:/source/caddy-config:ro
+      - caddy-data:/source/caddy-data:ro
+      - duplicati-data:/source/duplicati-data:ro
+      - homer-assets:/source/homer-assets:ro
+      - jackett-config:/source/jackett-config:ro
+      # - nexus-data:/source/nexus-data:ro
+      - organizr-config:/source/organizr-config:ro
+      - overseerr-config:/source/overseerr-config:ro
+      - plex-config:/source/plex-config:ro
+      - portainer-data:/source/portainer-data:ro
+      - radarr-config:/source/radarr-config:ro
+      - sonarr-config:/source/sonarr-config:ro
+      - tautulli-config:/source/tautulli-config:ro
+      - transmission-config:/source/transmission-config:ro
+      - transmission2-config:/source/transmission2-config:ro
     expose:
       - 8200
+    ports:
+      - 8200:8200
     networks:
       - backup
       - reverse-proxy
@@ -40,7 +61,7 @@ services:
   #     - sonarr-config:/source/sonarr-config:ro
   #     - tautulli-config:/source/tautulli-config:ro
   #     - transmission-config:/source/transmission-config:ro
-  #     - transmission-config-viktor:/source/transmission-config-viktor:ro
+  #     - transmission-config-viktor:/source/transmission2-config:ro
   #     - volumerize-backup:/backup
   #     - volumerize-cache:/volumerize-cache
   #     - /var/run/docker.sock:/var/run/docker.sock
@@ -49,38 +70,38 @@ services:
   #   restart: unless-stopped
 
 volumes:
-  # bazarr-config:
-  #   external: true
-  # caddy-config:
-  #   external: true
-  # caddy-data:
-  #   external: true
+  bazarr-config:
+    external: true
+  caddy-config:
+    external: true
+  caddy-data:
+    external: true
   duplicati-data:
     name: duplicati-data
-  # homer-assets:
-  #   external: true
-  # jackett-config:
-  #   external: true
+  homer-assets:
+    external: true
+  jackett-config:
+    external: true
   # nexus-data:
   #   external: true
-  # organizr-config:
-  #   external: true
-  # overseerr-config:
-  #   external: true
-  # plex-config:
-  #   external: true
-  # portainer-data:
-  #   external: true
-  # radarr-config:
-  #   external: true
-  # sonarr-config:
-  #   external: true
-  # tautulli-config:
-  #   external: true
-  # transmission-config:
-  #   external: true
-  # transmission-config-viktor:
-  #   external: true
+  organizr-config:
+    external: true
+  overseerr-config:
+    external: true
+  plex-config:
+    external: true
+  portainer-data:
+    external: true
+  radarr-config:
+    external: true
+  sonarr-config:
+    external: true
+  tautulli-config:
+    external: true
+  transmission-config:
+    external: true
+  transmission2-config:
+    external: true
   # volumerize-backup:
   #   name: volumerize-backup
   # volumerize-cache:
